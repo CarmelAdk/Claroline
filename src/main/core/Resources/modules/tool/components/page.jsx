@@ -9,14 +9,14 @@ import {PageFull} from '#/main/app/page/components/full'
 
 import {ToolIcon} from '#/main/core/tool/components/icon'
 import {getActions, getToolBreadcrumb, showToolBreadcrumb} from '#/main/core/tool/utils'
-import {CALLBACK_BUTTON} from '#/main/app/buttons'
+import {CALLBACK_BUTTON, LINK_BUTTON} from '#/main/app/buttons'
 
 const ToolPage = props => {
-  let toolbar = 'edit'
+  /*let toolbar = 'edit'
   if (props.primaryAction) {
     toolbar = props.primaryAction + ' | ' + toolbar
-  }
-  toolbar += ' | fullscreen more'
+  }*/
+  let toolbar = 'more'
 
   // ToolPage component can be used multiple times inside a tool,
   // we need to manage the fullscreen flag by ourselves otherwise it will be reset
@@ -38,7 +38,7 @@ const ToolPage = props => {
       title={trans(props.name, {}, 'tools')}
       showBreadcrumb={showToolBreadcrumb(props.currentContext.type, props.currentContext.data)}
       path={[].concat(getToolBreadcrumb(props.name, props.currentContext.type, props.currentContext.data), props.path)}
-      poster={get(props.toolData, 'poster')}
+      poster={props.poster || get(props.toolData, 'poster') || get(props.currentContext, 'data.poster')}
       icon={get(props.toolData, 'display.showIcon') ?
         <ToolIcon type={get(props.toolData, 'icon')} />
         :
@@ -46,21 +46,31 @@ const ToolPage = props => {
       }
       fullscreen={props.fullscreen}
       meta={{
-        title: `${trans(props.name, {}, 'tools')} - ${'workspace' === props.currentContext.type ? props.currentContext.data.code : trans(props.currentContext.type)}`,
+        title: `${trans(props.name, {}, 'tools')} - ${'workspace' === props.currentContext.type ? props.currentContext.data.name : trans(props.currentContext.type)}`,
         description: get(props.currentContext.data, 'meta.description')
       }}
 
+      nav={(props.nav || []).concat([{
+        key: 'parameters',
+        name: 'configure',
+        type: LINK_BUTTON,
+        icon: 'fa fa-fw fa-cog',
+        label: trans('parameters'),
+        target: props.basePath+'/edit'
+      }])}
+
+      primaryAction={props.primaryAction}
       toolbar={toolbar}
-      {...omit(props, 'name', 'currentContext', 'path', 'basePath', 'toolData', 'reload')}
+      {...omit(props, 'name', 'currentContext', 'path', 'basePath', 'toolData', 'reload', 'nav', 'poster')}
 
       actions={getActions(props.toolData, props.currentContext, {
         update: () => props.reload()
       }, props.basePath).then(baseActions => {
         if (props.actions instanceof Promise) {
-          return props.actions.then(promisedActions => promisedActions.concat(baseActions, [fullscreenAction]))
+          return props.actions.then(promisedActions => promisedActions.concat(baseActions/*, [fullscreenAction]*/)) // FIXME
         }
 
-        return (props.actions || []).concat(baseActions, [fullscreenAction])
+        return (props.actions || []).concat(baseActions/*, [fullscreenAction]*/) // FIXME
       })}
     >
       {props.children}
@@ -88,7 +98,9 @@ ToolPage.propTypes = {
   }).isRequired,
   // the name of the primary action of the tool (if we want to override the default one).
   // it can contain more than one action name
-  primaryAction: T.string,
+  //primaryAction: T.string,
+
+  nav: T.arrayOf(T.shape({})),
 
   // from store
   basePath: T.string,
