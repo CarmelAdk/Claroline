@@ -22,7 +22,6 @@ const WorkspaceCard = (props) =>
       type: URL_BUTTON,
       target: '#'+route(props.data.workspace)
     }}
-    className="workspace-evaluation-card"
     poster={props.data.workspace.thumbnail ? asset(props.data.workspace.thumbnail) : null}
     icon={
       <LiquidGauge
@@ -47,6 +46,8 @@ const WorkspaceCard = (props) =>
   >
     {-1 === ['xs', 'sm'].indexOf(props.size) && (!props.display || -1 !== props.display.indexOf('footer')) &&
       <ContentInfoBlocks
+        className="p-3 pt-0"
+        size="sm"
         items={[
           {
             icon: 'fa fa-fw fa-hourglass-half',

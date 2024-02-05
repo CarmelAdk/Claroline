@@ -4,8 +4,10 @@ import classes from 'classnames'
 import {Helmet} from 'react-helmet'
 
 import {asset} from '#/main/app/config/asset'
+import {theme} from '#/main/theme/config'
 
 import {PageSimple as PageSimpleTypes} from '#/main/app/page/prop-types'
+import isEmpty from 'lodash/isEmpty'
 
 const PageWrapper = props => createElement(!props.embedded ? 'main':'article', {
   id: props.id,
@@ -51,6 +53,14 @@ const PageSimple = props =>
         {props.meta.description &&
           <meta name="description" property="og:description" content={props.meta.description} />
         }
+      </Helmet>
+    }
+
+    {!isEmpty(props.styles) &&
+      <Helmet>
+        {props.styles.map(style =>
+          <link key={style} rel="stylesheet" type="text/css" href={theme(style)} />
+        )}
       </Helmet>
     }
 

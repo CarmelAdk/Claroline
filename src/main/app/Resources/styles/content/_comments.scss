@@ -3,8 +3,7 @@
     padding: $card-spacer-y $card-spacer-y;
     background: var(--#{$prefix}secondary-bg);
     margin-bottom: $component-margin-bottom;
-
-    @include border(1px solid transparent); // for correct alignment
+    border: 1px solid transparent; // for correct alignment
 
     hr {
         border-color: $body-bg;

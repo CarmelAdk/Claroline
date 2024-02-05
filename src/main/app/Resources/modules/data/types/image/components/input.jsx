@@ -127,7 +127,7 @@ class ImageInputComponent extends PureComponent {
         }
 
         {this.props.value && this.state.loaded &&
-          <div className="img-preview">
+          <div className="img-preview" role="presentation">
             <img
               className="img-thumbnail"
               src={asset(this.props.value)}

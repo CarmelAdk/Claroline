@@ -15,7 +15,6 @@ const ResourceCard = (props) =>
   <DataCard
     {...props}
     id={props.data.id}
-    className="resource-evaluation-card"
     poster={props.data.resourceNode.thumbnail ? asset(props.data.resourceNode.thumbnail) : null}
     icon={
       <LiquidGauge

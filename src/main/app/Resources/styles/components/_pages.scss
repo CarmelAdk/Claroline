@@ -8,7 +8,7 @@
 
     &.fullscreen {
         position: fixed;
-        z-index: $zindex-fullscreen;
+        z-index: $zindex-fixed;
         left: 0;
         top: 0;
         bottom: 0;
@@ -20,7 +20,7 @@
 
 .fullscreen-close {
     position: absolute;
-    z-index: $zindex-fullscreen;
+    z-index: $zindex-fixed;
     top: ($grid-gutter-width * .5);
     right: $grid-gutter-width;
     font-size: 36px;
@@ -40,7 +40,7 @@
 }
 
 .page-header {
-    position: relative;
+    position: relative; // why ?
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
@@ -121,18 +121,6 @@
     line-height: 1.25em;
 
     border: 1px solid transparent !important; // not perfect, it's required to override default btn border
-
-    /*&.default {
-        @include button-variant($page-action-default-color, $page-action-default-bg, $page-action-default-border);
-    }
-
-    &.primary {
-        @include button-variant($page-action-primary-color, $page-action-primary-bg, $page-action-primary-border);
-     }
-
-    &.danger {
-        @include button-variant($page-action-danger-color, $page-action-danger-bg, $page-action-danger-border);
-    }*/
 
     // displays icon as a square
     .action-icon {

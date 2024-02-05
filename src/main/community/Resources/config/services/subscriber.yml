@@ -11,7 +11,7 @@ services:
     Claroline\CommunityBundle\Subscriber\Crud\GroupSubscriber:
         arguments:
             - '@security.token_storage'
-            - '@Claroline\AppBundle\Event\StrictDispatcher'
+            - '@event_dispatcher'
             - '@Claroline\CoreBundle\Manager\FileManager'
 
     Claroline\CommunityBundle\Subscriber\Crud\OrganizationSubscriber:

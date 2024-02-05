@@ -16,118 +16,6 @@
     background-color: $toolbar-bg;
     color: $toolbar-color;
 
-    .app-menu-header {
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
-        align-items: stretch;
-        flex-shrink: 0;
-    }
-
-    .app-menu-title {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        line-height: 1;
-        padding: 10px ($grid-gutter-width * .5);
-        margin: 0;
-        font-family: $font-family-base;
-    }
-
-    .app-menu-status {
-        background-color: $toolbar-link-hover-bg;
-        padding: ($grid-gutter-width * .5);
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        align-items: center;
-
-        .user-avatar {
-            max-width: 70px;
-            max-height: 70px;
-            font-size: 70px;
-        }
-
-        .gauge {
-            flex-shrink: 0;
-        }
-
-        .app-menu-status-info {
-            flex: 1 0;
-            margin-left: ($grid-gutter-width * .5);
-            font-size: $font-size-sm;
-            color: $toolbar-link-color;
-
-            h3 {
-                margin-bottom: map-get($spacers, 1);
-                color: $toolbar-color;
-                display: flex;
-                justify-content: space-between;
-            }
-        }
-
-        .app-menu-status-toolbar {
-            flex: 1 0 100%;
-            text-align: right;
-
-            > .btn-link {
-                text-transform: uppercase;
-                padding: 0;
-                border: none;
-                color: $toolbar-link-color;
-
-                &:hover {
-                    color: $toolbar-link-hover-color;
-                }
-                &:focus {
-                    color: $toolbar-link-active-color;
-                }
-            }
-        }
-
-        + .app-menu-shortcuts {
-            margin-top: 2px;
-        }
-
-        + .app-menu-section .app-menu-section-toggle {
-            margin-top: 2px;
-        }
-    }
-
-    .app-menu-impersonation {
-        @include gradient-striped($toolbar-bg, 45deg);
-
-        background-size: 100px 100px;
-    }
-
-    .app-menu-shortcuts {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-
-        .app-menu-shortcuts-btn {
-            flex: 1;
-            font-size: 16px;
-            padding-left: 10px;
-            padding-right: 10px;
-            color: $toolbar-link-color;
-            background: $toolbar-link-hover-bg;
-            border-color: transparent;
-            box-shadow: none;
-
-            + .app-menu-shortcuts-btn {
-                margin-left: 2px;
-            }
-        }
-
-        + .app-menu-section .app-menu-section-toggle {
-            margin-top: 2px;
-        }
-    }
-
     .app-menu-section {
         &:first-of-type {
             margin-top: auto;
@@ -137,9 +25,9 @@
             flex: 1;
         }
 
-        .app-menu-section-title {
+        /*.app-menu-section-title {
             margin: 0;
-        }
+        }*/
 
         .app-menu-section-toggle {
             text-align: left;
@@ -147,13 +35,16 @@
             display: flex;
             align-items: center;
             width: 100%;
-            color: $toolbar-color;
+            color: $toolbar-title-color;
 
-            margin-bottom: 2px;
-            background: $toolbar-link-hover-bg;
+            //margin-bottom: 2px;
+            //background: $toolbar-link-hover-bg;
+            font-weight: $font-weight-semibold;
+            font-size: $toolbar-title-font-size;
+            text-transform: uppercase;
 
             .toggle {
-                font-size: 12px;
+                //font-size: $font-size-sm;
                 margin-left: auto;
             }
         }
@@ -168,31 +59,15 @@
         padding-left: $grid-gutter-width !important;
 
         &.active {
-            padding-left: 26px !important;
-            border-left: 4px solid $toolbar-active-color;
-        }
-
-        &.danger {
-            color: $brand-danger;
-
-            &:hover,
-            &:focus {
-                color: white;
-                background: $brand-danger;
-            }
-
-            &.disabled {
-                opacity: .65; // same than standard button
-                color: $brand-danger;
-                background: transparent;
-            }
+            /*padding-left: 26px !important;
+            border-left: 4px solid $toolbar-active-color;*/
         }
     }
 
     .list-group-item,
     .app-menu-back {
         display: block;
-        width: 100%;
+        /*width: 100%;*/
         padding: ($grid-gutter-width * .5);
         line-height: 1;
         color: $toolbar-link-color;
@@ -236,6 +111,118 @@
                 }
             }
         }
+    }
+}
+
+.app-menu-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: stretch;
+    flex-shrink: 0;
+}
+
+.app-menu-title {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 1;
+    padding: 10px ($grid-gutter-width * .5);
+    margin: 0;
+    font-family: $font-family-base;
+}
+
+.app-menu-status {
+    background-color: $toolbar-link-hover-bg;
+    padding: ($grid-gutter-width * .5);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+
+    .user-avatar {
+        max-width: 70px;
+        max-height: 70px;
+        font-size: 70px;
+    }
+
+    .gauge {
+        flex-shrink: 0;
+    }
+
+    .app-menu-status-info {
+        flex: 1 0;
+        margin-left: ($grid-gutter-width * .5);
+        font-size: $font-size-sm;
+        color: $toolbar-link-color;
+
+        h3 {
+            margin-bottom: map-get($spacers, 1);
+            color: $toolbar-color;
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+
+    .app-menu-status-toolbar {
+        flex: 1 0 100%;
+        text-align: right;
+
+        > .btn-link {
+            text-transform: uppercase;
+            padding: 0;
+            border: none;
+            color: $toolbar-link-color;
+
+            &:hover {
+                color: $toolbar-link-hover-color;
+            }
+            &:focus {
+                color: $toolbar-link-active-color;
+            }
+        }
+    }
+
+    + .app-menu-shortcuts {
+        margin-top: 2px;
+    }
+
+    + .app-menu-section .app-menu-section-toggle {
+        margin-top: 2px;
+    }
+}
+
+.app-menu-impersonation {
+    @include gradient-striped($toolbar-bg, 45deg);
+
+    background-size: 100px 100px;
+}
+
+.app-menu-shortcuts {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .app-menu-shortcuts-btn {
+        flex: 1;
+        font-size: 16px;
+        padding-left: 10px;
+        padding-right: 10px;
+        color: $toolbar-link-color;
+        background: $toolbar-link-hover-bg;
+        border-color: transparent;
+        box-shadow: none;
+
+        + .app-menu-shortcuts-btn {
+            margin-left: 2px;
+        }
+    }
+
+    + .app-menu-section .app-menu-section-toggle {
+        margin-top: 2px;
     }
 }
 

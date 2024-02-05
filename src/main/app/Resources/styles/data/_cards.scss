@@ -72,8 +72,8 @@
     color: $data-card-color;
     background: $data-card-bg;
     font-size: $data-card-font;
+    border: $data-card-border-width solid $data-card-border-color;
 
-    @include border($data-card-border-width solid $data-card-border-color);
     @include border-radius($data-card-border-radius);
     @include box-shadow($data-card-box-shadow);
 }
@@ -136,27 +136,15 @@
 .data-card-selected {
     color: $data-card-active-color;
     background-color: $data-card-active-bg;
-    //border-color: $data-card-active-border-color;
-
-    //@include box-shadow(0 0 2px rgba($brand-info, .35));
 
     .data-card-header {
         background: $data-card-active-header-bg;
-        //border-color: $data-card-active-inner-border-color;
     }
 
     .data-card-icon {
         color: $data-card-active-icon-color;
         background-color: $data-card-active-bg;
     }
-
-    /*&:hover {
-        background-color: #bfe3f4;
-
-        .data-card-header {
-            background: #b5d9ea;
-        }
-    }*/
 }
 
 // with poster image variant

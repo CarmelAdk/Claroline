@@ -6,6 +6,7 @@ import {LINK_BUTTON} from '#/main/app/buttons'
 import {FormData} from '#/main/app/content/form/containers/data'
 
 import {selectors} from '#/main/core/administration/parameters/store/selectors'
+import {ToolPage} from '#/main/core/tool/containers/page'
 
 const mailers = [
   {
@@ -100,86 +101,75 @@ const mailers = [
 ]
 
 const Technical = props =>
-  <FormData
-    name={selectors.FORM_NAME}
-    target={['apiv2_parameters_update']}
-    buttons={true}
-    cancel={{
-      type: LINK_BUTTON,
-      target: props.path,
-      exact: true
-    }}
-    locked={props.lockedParameters}
-    sections={[
+  <ToolPage
+    path={[
       {
-        icon: 'fa fa-fw fa-globe',
-        title: trans('internet'),
-        defaultOpened: true,
-        fields: [
-          {
-            name: 'internet.domain_name',
-            type: 'string',
-            label: trans('domain_name'),
-            linked: [
-              {
-                name: 'ssl.enabled',
-                type: 'boolean',
-                label: trans('ssl_enabled')
-              }, {
-                name: 'ssl.version',
-                type: 'string',
-                label: trans('version'),
-                displayed: (parameters) => parameters.ssl.enabled
-              }
-            ]
-          }
-        ]
-      }, {
-        icon: 'fa fa-fw fa-envelope',
-        title: trans('email'),
-        fields: [
-          {
-            name: 'mailer.transport',
-            type: 'choice',
-            label: trans('transport'),
-            required: true,
-            options: {
-              condensed: true,
-              choices: mailers.reduce((choices, mailer) => Object.assign(choices, {
-                [mailer.name]: mailer.label
-              }), {})
-            },
-            linked: props.mailer ? mailers.find(mailer => mailer.name === props.mailer.transport).fields: []
-          }
-        ]
-      }, {
-        icon: 'fa fa-fw fa-file',
-        title: trans('files'),
-        fields: [
-          {
-            name: 'javascripts',
-            label: trans('javascripts'),
-            type: 'collection',
-            options: {
-              type: 'file',
-              placeholder: trans('no_javascript'),
-              button: trans('add_javascript')
-            }
-          }, {
-            name: 'stylesheets',
-            label: trans('stylesheets'),
-            type: 'collection',
-            help: trans('custom_stylesheets_help'),
-            options: {
-              type: 'file',
-              placeholder: trans('no_stylesheet'),
-              button: trans('add_stylesheet')
-            }
-          }
-        ]
+        type: LINK_BUTTON,
+        label: trans('technical'),
+        target: '' // current page
       }
     ]}
-  />
+    subtitle={trans('technical')}
+  >
+    <FormData
+      className="mt-3"
+      name={selectors.FORM_NAME}
+      target={['apiv2_parameters_update']}
+      buttons={true}
+      cancel={{
+        type: LINK_BUTTON,
+        target: props.path,
+        exact: true
+      }}
+      locked={props.lockedParameters}
+      sections={[
+        {
+          icon: 'fa fa-fw fa-envelope',
+          title: trans('email'),
+          fields: [
+            {
+              name: 'mailer.transport',
+              type: 'choice',
+              label: trans('transport'),
+              required: true,
+              options: {
+                condensed: true,
+                choices: mailers.reduce((choices, mailer) => Object.assign(choices, {
+                  [mailer.name]: mailer.label
+                }), {})
+              },
+              linked: props.mailer ? mailers.find(mailer => mailer.name === props.mailer.transport).fields: []
+            }
+          ]
+        }, {
+          icon: 'fa fa-fw fa-file',
+          title: trans('files'),
+          fields: [
+            {
+              name: 'javascripts',
+              label: trans('javascripts'),
+              type: 'collection',
+              options: {
+                type: 'file',
+                placeholder: trans('no_javascript'),
+                button: trans('add_javascript')
+              }
+            }, {
+              name: 'stylesheets',
+              label: trans('stylesheets'),
+              type: 'collection',
+              help: trans('custom_stylesheets_help'),
+              options: {
+                type: 'file',
+                placeholder: trans('no_stylesheet'),
+                button: trans('add_stylesheet')
+              }
+            }
+          ]
+        }
+      ]}
+    />
+  </ToolPage>
 
 Technical.propTypes = {
   path: T.string.isRequired,
