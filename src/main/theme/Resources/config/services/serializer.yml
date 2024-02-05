@@ -1,4 +1,6 @@
 services:
   _defaults:
     tags: ['claroline.serializer']
+
   Claroline\ThemeBundle\Serializer\ColorCollectionSerializer: ~
+  Claroline\ThemeBundle\Serializer\ThemeSerializer: ~

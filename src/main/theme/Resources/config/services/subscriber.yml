@@ -16,3 +16,8 @@ services:
             - '@Claroline\ThemeBundle\Manager\IconSetManager'
             - '@Claroline\AppBundle\API\SerializerProvider'
             - '@Claroline\AppBundle\Persistence\ObjectManager'
+
+    # Crud
+    Claroline\ThemeBundle\Subscriber\Crud\ThemeSubscriber:
+        arguments:
+            - '@Claroline\CoreBundle\Manager\FileManager'

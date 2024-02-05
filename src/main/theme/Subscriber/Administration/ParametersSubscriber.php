@@ -16,6 +16,7 @@ use Claroline\AppBundle\Component\Tool\AbstractToolSubscriber;
 use Claroline\AppBundle\Persistence\ObjectManager;
 use Claroline\CoreBundle\Event\Tool\OpenToolEvent;
 use Claroline\ThemeBundle\Entity\ColorCollection;
+use Claroline\ThemeBundle\Entity\Theme;
 use Claroline\ThemeBundle\Manager\IconSetManager;
 use Claroline\ThemeBundle\Manager\ThemeManager;
 
@@ -39,17 +40,17 @@ class ParametersSubscriber extends AbstractToolSubscriber
      */
     protected function onOpen(OpenToolEvent $event): void
     {
+        $themes = $this->themeManager->all(true);
         $colorCharts = $this->objectManager->getRepository(ColorCollection::class)->findAll();
-        $chartsData = [];
-
-        foreach ($colorCharts as $chart) {
-            $chartsData[] = $this->serializer->serialize($chart);
-        }
 
         $event->addResponse([
-            'availableThemes' => $this->themeManager->getAvailableThemes(),
+            'availableThemes' => array_map(function (Theme $theme) {
+                return $this->serializer->serialize($theme);
+            }, $themes),
             'availableIconSets' => $this->iconSetManager->getAvailableSets(),
-            'availableColorCharts' => $chartsData,
+            'availableColorCharts' => array_map(function (ColorCollection $colorCollection) {
+                return $this->serializer->serialize($colorCollection);
+            }, $colorCharts),
         ]);
     }
 }

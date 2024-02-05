@@ -15,3 +15,7 @@ services:
     Claroline\ThemeBundle\Controller\ColorCollectionController:
         parent: Claroline\AppBundle\Controller\AbstractCrudController
         public: true
+
+    Claroline\ThemeBundle\Controller\ThemeController:
+        parent: Claroline\AppBundle\Controller\AbstractCrudController
+        public: true

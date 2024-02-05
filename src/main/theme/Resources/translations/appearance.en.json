@@ -16,5 +16,6 @@
   "color_chart_delete_confirm_title": "Color chart deletion",
   "color_chart_delete_confirm_message": "Are you sure you want to delete this color chart?",
   "icon_set_delete_confirm_title": "{1} Icons set deletion | [2,Inf[ Icons sets deletion",
-  "icon_set_delete_confirm_message": "{1} Are you sure you want to delete this icons set? | [2,Inf[ Are you sure you want to delete these %count% icons sets?"
+  "icon_set_delete_confirm_message": "{1} Are you sure you want to delete this icons set? | [2,Inf[ Are you sure you want to delete these %count% icons sets?",
+  "theme_name": "Theme : %name%"
 }

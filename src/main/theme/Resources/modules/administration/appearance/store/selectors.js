@@ -5,6 +5,8 @@ import {selectors as paramSelectors} from '#/main/core/administration/parameters
 
 const STORE_NAME = 'appearanceParameters'
 
+const THEME_FORM_NAME = paramSelectors.STORE_NAME+'.'+STORE_NAME+'.theme'
+
 const store = createSelector(
   [paramSelectors.store],
   (baseStore) => baseStore[STORE_NAME]
@@ -36,6 +38,7 @@ const currentIconSet = createSelector(
 
 export const selectors = {
   STORE_NAME,
+  THEME_FORM_NAME,
 
   store,
   availableThemes,

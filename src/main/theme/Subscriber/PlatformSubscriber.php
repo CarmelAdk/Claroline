@@ -12,21 +12,12 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class PlatformSubscriber implements EventSubscriberInterface
 {
-    private PlatformConfigurationHandler $config;
-    private IconSetManager $iconManager;
-    private ObjectManager $objectManager;
-    private SerializerProvider $serializer;
-
     public function __construct(
-        PlatformConfigurationHandler $config,
-        IconSetManager $iconManager,
-        ObjectManager $objectManager,
-        SerializerProvider $serializer
+        private readonly PlatformConfigurationHandler $config,
+        private readonly IconSetManager $iconManager,
+        private readonly ObjectManager $objectManager,
+        private readonly SerializerProvider $serializer
     ) {
-        $this->config = $config;
-        $this->iconManager = $iconManager;
-        $this->objectManager = $objectManager;
-        $this->serializer = $serializer;
     }
 
     public static function getSubscribedEvents(): array

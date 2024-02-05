@@ -51,23 +51,6 @@ class ThemeManager
     }
 
     /**
-     * Returns the names of all the registered themes.
-     *
-     * @return string[]
-     */
-    public function getAvailableThemes(): array
-    {
-        $themes = $this->all(true);
-        $themeNames = [];
-
-        foreach ($themes as $theme) {
-            $themeNames[$theme->getNormalizedName()] = $theme->getName();
-        }
-
-        return $themeNames;
-    }
-
-    /**
      * Returns the current platform theme.
      *
      * NB. This method is called many times

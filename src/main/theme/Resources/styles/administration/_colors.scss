@@ -1,0 +1,39 @@
+
+.color-chart-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.color-chart-colors-list {
+  margin: -2px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.color-dot-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  .color-dot-config {
+    position: relative;
+  }
+
+  .color-dot {
+    margin: map-get($spacers, 2);
+  }
+
+  .btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: -4px;
+    padding: 4px;
+    width: 34px;
+    height: 34px;
+  }
+}

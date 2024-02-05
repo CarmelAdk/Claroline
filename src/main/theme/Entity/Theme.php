@@ -11,6 +11,7 @@
 
 namespace Claroline\ThemeBundle\Entity;
 
+use Claroline\AppBundle\Entity\Display\Poster;
 use Claroline\AppBundle\Entity\FromPlugin;
 use Claroline\AppBundle\Entity\Identifier\Id;
 use Claroline\AppBundle\Entity\Identifier\Uuid;
@@ -36,10 +37,29 @@ class Theme
      * Is it the default platform theme ?
      *
      * @ORM\Column(name="is_default", type="boolean")
-     *
-     * @var bool
      */
-    private $default = false;
+    private bool $default = false;
+
+    private string $defaultMode = 'light';
+
+    /**
+     * @ORM\Column(name="logo", nullable=true)
+     */
+    private ?string $logo = null;
+
+    /**
+     * A title to be displayed in the app header (will be the brand name most of the time).
+     *
+     * @ORM\Column(name="title", nullable=true)
+     */
+    private ?string $title = null;
+
+    /**
+     * A smaller title to be displayed in the app header.
+     *
+     * @ORM\Column(name="subtitle", nullable=true)
+     */
+    private ?string $subtitle = null;
 
     public function __construct()
     {
@@ -65,6 +85,36 @@ class Theme
     public function isCustom(): bool
     {
         return empty($this->plugin);
+    }
+
+    public function getLogo(): ?string
+    {
+        return $this->logo;
+    }
+
+    public function setLogo(?string $logo): void
+    {
+        $this->logo = $logo;
+    }
+
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(?string $title): void
+    {
+        $this->title = $title;
+    }
+
+    public function getSubtitle(): ?string
+    {
+        return $this->subtitle;
+    }
+
+    public function setSubtitle(?string $subtitle): void
+    {
+        $this->subtitle = $subtitle;
     }
 
     /**
