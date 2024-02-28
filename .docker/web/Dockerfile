@@ -1,6 +1,10 @@
 FROM php:8.1-apache
 
-LABEL maintainer="Donovan Tengblad"
+LABEL maintainer="Carmel Adikin"
+
+RUN useradd -ms /bin/bash app
+
+USER app
 
 RUN a2enmod rewrite expires ssl headers
 
