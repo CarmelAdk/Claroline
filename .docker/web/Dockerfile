@@ -2,10 +2,6 @@ FROM php:8.1-apache
 
 LABEL maintainer="Carmel Adikin"
 
-RUN useradd -ms /bin/bash app
-
-USER app
-
 RUN a2enmod rewrite expires ssl headers
 
 RUN curl -sL https://deb.nodesource.com/setup_16.x | bash
@@ -50,6 +46,9 @@ RUN a2dissite 000-default && a2dissite default-ssl && a2ensite claroline.conf
 
 COPY . /var/www/html/claroline
 WORKDIR /var/www/html/claroline
+
+RUN useradd -ms /bin/bash app
+USER app
 
 RUN composer install --no-dev --optimize-autoloader
 RUN rm ./config/parameters.yml
